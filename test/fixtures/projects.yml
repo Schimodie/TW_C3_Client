@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  urlId: MyString
+  clicks: 1
+
+two:
+  urlId: MyString
+  clicks: 1

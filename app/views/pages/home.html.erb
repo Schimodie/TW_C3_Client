@@ -1,0 +1,8 @@
+<div id="search_box">
+  <% form_tag({ :controller => 'pages', :action => 'search' }, :id => 'search') do %>
+    <%= label_tag 'Nume/parte din nume autor proiect' %>
+    <%= text_field_tag 'author' %>
+    <%= submit_tag 'Cauta' %>
+  <% end %>
+</div>
+
