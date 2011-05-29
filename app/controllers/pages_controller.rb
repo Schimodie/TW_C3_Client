@@ -18,7 +18,7 @@ class PagesController < ApplicationController
         if Project.find_by_urlId(url).nil?
           Projects.create(:urlId => url, :clicks => 0)
         
-        @result += [JSON.parse(Net::HTTP.get_response(URI.parse(url).body)]
+        @result += [JSON.parse(Net::HTTP.get_response(URI.parse(url).body))]
       end
     end
   end
