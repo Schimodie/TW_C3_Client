@@ -1,2 +1,23 @@
-<% @result.each do |res| %>
-<% end %>
+<div id="results_box">
+  <h1 id="res_title">Rezultatele cautarii</h1>
+
+  <% if @result.length != 0 %>
+    <% @result.each do |res| %>
+      <% json_obj = JSON.parse(Net::HTTP.get_response(URI.parse(res)).body) %>
+  
+      <div class="result" onmousedown="<%= remote_function(:url => {:controller => 'pages', :action => 'raiseClicksCount', :url_string => res}) %>" onmouseup="window.location = '<%= json_obj['project_url'] %>'" style="cursor: pointer">
+        <pre><p class="def">Autori:</p> <%= json_obj['authors']['first'] %> <% if !json_obj['authors']['second'].nil? %>si <%= json_obj['authors']['second'] %> <% end %></pre>
+  
+        <% if !json_obj['details'].nil? %>
+          <pre><p class="def">Descriere:</p> <%= json_obj['details'] %></pre>
+        <% end %>
+  
+        <pre><p class="def">Numar accesari:</p> <%= Project.find_by_urlId(res)[:clicks] %></pre>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="result">
+      <p>Nu a fost gasit nimeni ce ar putea contine in nume sirul dat.</p>
+    </div>
+  <% end %>
+</div>

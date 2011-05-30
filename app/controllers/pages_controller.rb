@@ -14,13 +14,18 @@ class PagesController < ApplicationController
     json.each do |el|
       if el['authors']['first'].downcase.include?(author.downcase) or (!el['authors']['second'].nil? and el['authors']['second'].downcase.include?(author.downcase))
         url = "http://tw-concurs3.heroku.com/rest/projects/show/#{el['id']}.json"
+        @result += [url]
 
         if Project.find_by_urlId(url).nil?
           Project.create(:urlId => url, :clicks => 0)
         end
-        
-        @result += [JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)]
       end
     end
+  end
+
+  def raiseClicksCount
+    proj = Project.find_by_urlId(params[:url_string])
+    proj[:clicks] += 1
+    proj.save
   end
 end
