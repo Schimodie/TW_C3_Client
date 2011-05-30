@@ -16,7 +16,7 @@ class PagesController < ApplicationController
         url = "http://tw-concurs3.heroku.com/rest/projects/show/#{el['id']}.json"
 
         if Project.find_by_urlId(url).nil?
-          Projects.create(:urlId => url, :clicks => 0)
+          Project.create(:urlId => url, :clicks => 0)
         end
         
         @result += [JSON.parse(Net::HTTP.get_response(URI.parse(url).body))]
