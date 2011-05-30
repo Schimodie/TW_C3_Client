@@ -4,14 +4,14 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-module ::Contest3Client
-  class Application
-    include Rake::DSL
-  end
-end
+#module ::Contest3Client
+#  class Application
+#    include Rake::DSL
+#  end
+#end
 
-module ::RakeFileUtils
-  extend Rake::FileUtilsExt
-end
+#module ::RakeFileUtils
+#  extend Rake::FileUtilsExt
+#end
 
 Contest3Client::Application.load_tasks
