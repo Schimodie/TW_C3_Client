@@ -19,7 +19,7 @@ class PagesController < ApplicationController
           Project.create(:urlId => url, :clicks => 0)
         end
         
-        @result += [JSON.parse(Net::HTTP.get_response(URI.parse(url).body))]
+        @result += [JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)]
       end
     end
   end
